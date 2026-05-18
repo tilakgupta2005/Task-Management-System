@@ -1,6 +1,5 @@
 from fastapi import APIRouter, HTTPException
 from fastapi.responses import JSONResponse
-from fastapi.security import HTTPBearer
 from schema.users import *
 from services.auth_service import *
 

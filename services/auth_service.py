@@ -1,4 +1,3 @@
-import token
 from core.config import JWT_SECRET_KEY, JWT_ALGORITHM
 from fastapi import HTTPException, Request
 from schema.users import *
@@ -49,7 +48,7 @@ def login_user(user_data: LoginUser):
     if not bcrypt.checkpw(user_data.password.encode('utf-8'), user[3].encode('utf-8')):
         raise HTTPException(status_code=401, detail="Invalid password")
     
-    expires_at = datetime.utcnow() + timedelta(minutes=1)
+    expires_at = datetime.utcnow() + timedelta(days=7)
     token = jwt.encode({"user_email": user[2], "exp": expires_at}, JWT_SECRET_KEY, JWT_ALGORITHM)
         
     print(f"Logging in user with Email: {user_data.Email}")
